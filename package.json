@@ -1,6 +1,7 @@
 {
   "name": "react-holerite",
   "private": true,
+  "proxy": "http://localhost:5042/",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
@@ -10,9 +11,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "axios": "^1.7.1",
     "decimal.js": "^10.4.3",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-number-format": "^5.3.4",
+    "react-text-mask": "^5.5.0",
+    "text-mask-addons": "^3.8.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",

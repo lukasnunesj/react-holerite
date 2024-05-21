@@ -60,7 +60,7 @@ export function calcularDSRHorasExtras(valorTotalHE, diasUteis, domingosEFeriado
 
 export function calcularAdicionalNoturno(totalHorasNoturnas, valorAdicionalNoturno) {
   const valorTotalAdicionalNoturno = new Decimal(totalHorasNoturnas).times(valorAdicionalNoturno);
-  return valorTotalAdicionalNoturno.toFixed(2);
+  return valorTotalAdicionalNoturno.toDecimalPlaces(2, Decimal.ROUND_DOWN).toFixed(2);
 }
 
 export function calcularHoraTrabalho(salario) {
