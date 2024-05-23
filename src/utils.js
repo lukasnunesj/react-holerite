@@ -13,3 +13,10 @@ export function sanitizeCurrency(value) {
     .replace(/\D/g, "")
     .replace(/(\d)(\d{2})$/, "$1.$2");
 }
+
+export function formatCurrency(value) {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(value);
+}
