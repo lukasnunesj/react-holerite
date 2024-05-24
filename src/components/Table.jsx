@@ -6,45 +6,43 @@ function Table({ folha }) {
   const tdClasses = "px-6 py-3 text-right";
 
   const data = { ...folha };
-  data.totalDebitos = data.totalDebitos === undefined ? 0 : parseFloat(data.salarioBruto) + data.totalAdicionalNoturno + data.totalHorasExtras75 + data.totalHorasExtras100 + data.totalDSRNoturno + data.totalDSRHoraExtra;
-  data.totalGeral = data.totalDebitos - data.totalINSS - data.totalIRRF - parseFloat(data.plano_medico) - parseFloat(data.outros_descontos);
 
   return (
     <table className="w-full text-sm text-left text-teal-700 ">
       <thead className="text-xs text-teal-800 uppercase bg-teal-300">
         <tr>
-          <th className="px-6 py-3">Titulo</th>
-          <th className="px-6 py-3 text-right">Valor (R$)</th>
+          <th className="px-6 py-3">Salário Bruto</th>
+          <th className="px-6 py-3 text-right">{formatCurrency(data.salarioBruto)}</th>
         </tr>
       </thead>
       <tbody>
         <tr className={trClasses}>
           <th scope="row" className={thClasses}>
-            Adicional Noturno (30%)
+            ( + ) Adicional Noturno (30%)
           </th>
           <td className={tdClasses}>{formatCurrency(data.totalAdicionalNoturno)}</td>
         </tr>
         <tr className={trClasses}>
           <th scope="row" className={thClasses}>
-            Horas extras 75%
+            ( + ) Horas extras 75%
           </th>
           <td className={tdClasses}>{formatCurrency(data.totalHorasExtras75)}</td>
         </tr>
         <tr className={trClasses}>
           <th scope="row" className={thClasses}>
-            Horas extras 100%
+            ( + ) Horas extras 100%
           </th>
           <td className={tdClasses}>{formatCurrency(data.totalHorasExtras100)}</td>
         </tr>
         <tr className={trClasses}>
           <th scope="row" className={thClasses}>
-            DSR Horas Noturnas
+            ( + ) DSR Horas Noturnas
           </th>
           <td className={tdClasses}>{formatCurrency(data.totalDSRNoturno)}</td>
         </tr>
         <tr className={trClasses}>
           <th scope="row" className={thClasses}>
-            DSR Horas Extras
+            ( + ) DSR Horas Extras
           </th>
           <td className={tdClasses}>{formatCurrency(data.totalDSRHoraExtra)}</td>
         </tr>
@@ -56,39 +54,33 @@ function Table({ folha }) {
 
         <tr className={trClasses}>
           <th scope="row" className={thClasses}>
-            INSS
+            ( - ) Vale/Adiantamento (40%)
           </th>
-          <td className={`${tdClasses}`}>
-            <span className="font-bold pr-4">-</span>
-            {formatCurrency(data.totalINSS)}
-          </td>
+          <td className={`${tdClasses}`}>{formatCurrency(data.valorValeAdiantamento)}</td>
         </tr>
         <tr className={trClasses}>
           <th scope="row" className={thClasses}>
-            IRRF
+            ( - ) INSS
           </th>
-          <td className={`${tdClasses} `}>
-            <span className="font-bold pr-4">-</span>
-            {formatCurrency(data.totalIRRF)}
-          </td>
+          <td className={`${tdClasses}`}>{formatCurrency(data.totalINSS)}</td>
         </tr>
         <tr className={trClasses}>
           <th scope="row" className={thClasses}>
-            Plano Médico
+            ( - ) IRRF
           </th>
-          <td className={`${tdClasses} `}>
-            <span className="font-bold pr-4">-</span>
-            {formatCurrency(data.plano_medico)}
-          </td>
+          <td className={`${tdClasses} `}>{formatCurrency(data.totalIRRF)}</td>
         </tr>
         <tr className={trClasses}>
           <th scope="row" className={thClasses}>
-            Outros Descontos
+            ( - ) Plano Médico
           </th>
-          <td className={`${tdClasses} `}>
-            <span className="font-bold pr-4">-</span>
-            {formatCurrency(data.outros_descontos)}
-          </td>
+          <td className={`${tdClasses} `}>{formatCurrency(data.planoMedico)}</td>
+        </tr>
+        <tr className={trClasses}>
+          <th scope="row" className={thClasses}>
+            ( - ) Outros Descontos
+          </th>
+          <td className={`${tdClasses} `}>{formatCurrency(data.outrosDescontos)}</td>
         </tr>
       </tbody>
       <tfoot>

@@ -8,6 +8,7 @@ axios.defaults.baseURL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [folha, setFolha] = useState({
+    salarioBruto: 0,
     totalINSS: 0,
     totalIRRF: 0,
     totalAdicionalNoturno: 0,
@@ -16,8 +17,10 @@ function App() {
     totalDSRNoturno: 0,
     totalDSRHoraExtra: 0,
     totalGeral: 0,
-    plano_medico: 0,
-    outros_descontos: 0,
+    totalDebitos: 0,
+    planoMedico: 0,
+    outrosDescontos: 0,
+    valorValeAdiantamento: 0,
   });
 
   async function handleOnSubmit(event) {
@@ -40,22 +43,28 @@ function App() {
         HorasExtras100: horasExtras100,
         DiasUteis: diasUteis,
         DomingosFeriados: domingosFeriados,
+        PlanoMedico: plano_medico,
+        OutrosDescontos: outros_descontos,
       },
     });
-    console.log(response.data.dados);
-    const responseData = response.data.dados;
-    responseData.plano_medico = plano_medico;
-    responseData.outros_descontos = outros_descontos;
-    responseData.totalDebitos = 0;
-    responseData.salarioBruto = salarioBruto;
-
-    setFolha(responseData);
+    setFolha(response.data.dados);
   }
 
   function handleOnClick() {
-    setValorINSS(0);
-    setValorIRRF(0);
-    setValorTotalAdicionalNoturno(0);
+    setFolha({
+      salarioBruto: 0,
+      totalINSS: 0,
+      totalIRRF: 0,
+      totalAdicionalNoturno: 0,
+      totalHorasExtras75: 0,
+      totalHorasExtras100: 0,
+      totalDSRNoturno: 0,
+      totalDSRHoraExtra: 0,
+      totalGeral: 0,
+      totalDebitos: 0,
+      planoMedico: 0,
+      outrosDescontos: 0,
+    });
   }
 
   return (
@@ -67,16 +76,16 @@ function App() {
         <div className="md:w-2/4 border rounded-xl mx-auto bg-white p-4 shadow-xl">
           <form onSubmit={handleOnSubmit}>
             <div className="flex flex-row justify-between gap-4">
-              <Input text="Salário Bruto" mask="money" name="salario_bruto" />
-              <Input text="Horas Noturnas" mask="time" name="horas_noturnas" />
-              <Input text="Horas Extras 75%" mask="time" name="horas_extras_75" />
-              <Input text="Horas 100%" mask="time" name="horas_extras_100" />
+              <Input text="Salário Bruto" mask="money" name="salario_bruto" required placeholder="0,00" />
+              <Input text="Horas Noturnas" mask="time" name="horas_noturnas" placeholder="99:99" />
+              <Input text="Horas Extras 75%" mask="time" name="horas_extras_75" placeholder="99:99" />
+              <Input text="Horas 100%" mask="time" name="horas_extras_100" placeholder="99:99" />
             </div>
             <div className="flex flex-row justify-between gap-4">
-              <Input text="Dias Uteis" mask="number" step="1" name="dias_uteis" />
-              <Input text="Domingos e feriados" mask="number" step="1" name="domingos_feriados" />
-              <Input text="Plano Médico" mask="money" name="plano_medico" />
-              <Input text="Outros Descontos" mask="money" name="outros_descontos" />
+              <Input text="Dias Uteis" mask="number" step="1" name="dias_uteis" placeholder="0" />
+              <Input text="Domingos e feriados" mask="number" step="1" name="domingos_feriados" placeholder="0" />
+              <Input text="Plano Médico" mask="money" name="plano_medico" placeholder="0,00" />
+              <Input text="Outros Descontos" mask="money" name="outros_descontos" placeholder="0,00" />
             </div>
             <div className="flex flex-row justify-between gap-4"></div>
             <div className="mt-auto flex w-full justify-end gap-1">
