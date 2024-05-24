@@ -73,15 +73,15 @@ function App() {
         <h1 className="font-bold text-4xl tracking-wide text-teal-900">Previsão de folha de pagamento</h1>
       </header>
       <main className="flex flex-col items-center justify-center p-4 md:p-12">
-        <div className="md:w-2/4 border rounded-xl mx-auto bg-white p-4 shadow-xl">
+        <div className=" w-full lg:w-2/4 border rounded-xl mx-auto bg-white p-4 shadow-xl">
           <form onSubmit={handleOnSubmit}>
-            <div className="flex flex-row justify-between gap-4">
+            <div className="flex lg:flex-row flex-col justify-between lg:gap-4">
               <Input text="Salário Bruto" mask="money" name="salario_bruto" required placeholder="0,00" />
               <Input text="Horas Noturnas" mask="time" name="horas_noturnas" placeholder="99:99" />
               <Input text="Horas Extras 75%" mask="time" name="horas_extras_75" placeholder="99:99" />
               <Input text="Horas 100%" mask="time" name="horas_extras_100" placeholder="99:99" />
             </div>
-            <div className="flex flex-row justify-between gap-4">
+            <div className="flex lg:flex-row flex-col justify-between lg:gap-4">
               <Input text="Dias Uteis" mask="number" step="1" name="dias_uteis" placeholder="0" />
               <Input text="Domingos e feriados" mask="number" step="1" name="domingos_feriados" placeholder="0" />
               <Input text="Plano Médico" mask="money" name="plano_medico" placeholder="0,00" />
@@ -96,7 +96,7 @@ function App() {
             </div>
           </form>
         </div>
-        <div className="w-full md:w-2/4 my-8 overflow-x-auto shadow-md rounded-lg">
+        <div className="w-full lg:w-2/4 my-8 overflow-x-auto shadow-md rounded-lg">
           <Table folha={folha} />
         </div>
       </main>

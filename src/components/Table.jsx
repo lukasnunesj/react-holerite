@@ -2,8 +2,8 @@ import { formatCurrency } from "../utils";
 
 function Table({ folha }) {
   const trClasses = "bg-white border-b hover:bg-teal-50";
-  const thClasses = "pl-8 pr-6 py-4 font-medium text-teal-900 whitespace-nowrap ";
-  const tdClasses = "px-6 py-3 text-right";
+  const thClasses = "lg:pl-8 lg:pr-6 lg:py-4 pl-6 pr-4 py-2 font-medium text-teal-900 whitespace-nowrap ";
+  const tdClasses = "lg:px-6 lg:py-3 px-4 py-2 text-right";
 
   const data = { ...folha };
 
@@ -11,8 +11,8 @@ function Table({ folha }) {
     <table className="w-full text-sm text-left text-teal-700 ">
       <thead className="text-xs text-teal-800 uppercase bg-teal-300">
         <tr>
-          <th className="px-6 py-3">Salário Bruto</th>
-          <th className="px-6 py-3 text-right">{formatCurrency(data.salarioBruto)}</th>
+          <th className="lg:px-6 lg:py-3 px-4 py-2">Salário Bruto</th>
+          <th className="lg:px-6 lg:py-3 px-4 py-2 text-right">{formatCurrency(data.salarioBruto)}</th>
         </tr>
       </thead>
       <tbody>
@@ -48,8 +48,8 @@ function Table({ folha }) {
         </tr>
 
         <tr className="bg-teal-100">
-          <th className="px-6 py-3">Total Debitos</th>
-          <th className="px-6 py-3 text-right">{formatCurrency(data.totalDebitos)}</th>
+          <th className="lg:px-6 lg:py-3 px-4 py-2">Total Debitos</th>
+          <th className="lg:px-6 lg:py-3 px-4 py-2 text-right">{formatCurrency(data.totalDebitos)}</th>
         </tr>
 
         <tr className={trClasses}>
@@ -85,7 +85,7 @@ function Table({ folha }) {
       </tbody>
       <tfoot>
         <tr className="font-bold text-teal-900 bg-teal-300">
-          <th scope="row" className="px-6 py-3 text-base">
+          <th scope="row" className="lg:px-6 lg:py-3 px-4 py-2 text-base">
             Total
           </th>
           <td className={tdClasses}>{formatCurrency(data.totalGeral)}</td>
