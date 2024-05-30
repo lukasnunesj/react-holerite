@@ -17,7 +17,7 @@ export default function Input({ text, name, mask, ...props }) {
   });
   return (
     <div className="mb-5">
-      <label className="mb-3 block text-base font-medium text-teal-950" htmlFor={name}>
+      <label className="mb-3 block text-base font-medium text-black" htmlFor={name}>
         {text}
       </label>
       {mask == "money" && <input ref={inputRef} id={name} name={name} className={inputClasses} {...props} onChange={handleChange} />}

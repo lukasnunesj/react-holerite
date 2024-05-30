@@ -4,7 +4,6 @@
 
 @layer base {
   body {
-    @apply bg-gradient-to-br from-teal-200 via-teal-400 to-teal-700;
+    @apply bg-gradient-to-br from-teal-200 via-teal-400 to-teal-700 h-full;
   }
-
 }
