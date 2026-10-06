@@ -28,9 +28,11 @@ function App() {
     isLoading: false,
     loaded: false,
   });
+  const [erro, setErro] = useState(null);
 
   async function handleOnSubmit(event) {
     event.preventDefault();
+    setErro(null);
     setLoadState(prevState => ({ ...prevState, isLoading: true, loaded: false }));
     const fd = new FormData(event.target);
     const salarioBruto = sanitizeCurrency(fd.get("salario_bruto"));
@@ -59,7 +61,11 @@ function App() {
       });
       setFolha({ ...response.data.dados, totalHoras });
     } catch (error) {
-      console.log(error.message);
+      setErro(
+        error.response?.status === 400
+          ? "Confira os campos: informe o salário, os dias úteis e as horas no formato HH:mm."
+          : "Não foi possível calcular agora. Tente novamente em instantes."
+      );
     } finally {
       setLoadState(prevState => ({ ...prevState, isLoading: false, loaded: true }));
     }
@@ -80,6 +86,7 @@ function App() {
       planoMedico: 0,
       outrosDescontos: 0,
     });
+    setErro(null);
     setLoadState(prevState => ({ ...prevState, isLoading: false, loaded: false }));
   }
 
@@ -106,7 +113,12 @@ function App() {
             <FormButtons onClickReset={handleOnClickReset} isLoading={loadState.isLoading} />
           </form>
         </section>
-        {loadState.loaded && <Table folha={folha} />}
+        {erro && (
+          <p role="alert" className="mt-6 text-center font-semibold text-red-700">
+            {erro}
+          </p>
+        )}
+        {loadState.loaded && !erro && <Table folha={folha} />}
       </main>
       <footer className="flex-1 flex items-end justify-center py-4 text-center mt-12">
         <p className="text-center text-sm  text-black">

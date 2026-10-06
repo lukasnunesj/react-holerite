@@ -1,4 +1,4 @@
-import { calcTotalHoras } from "../utils";
+import { calcTotalHoras, sanitizeCurrency } from "../utils";
 
 describe('calcTotalHoras', () => {
 
@@ -14,5 +14,19 @@ describe('calcTotalHoras', () => {
     const input = [];
     const result = calcTotalHoras(input);
     expect(result).toBe("00:00");
+  });
+
+  it('should carry minutes over into hours', () => {
+    expect(calcTotalHoras(["00:45", "00:45", "00:30"])).toBe("02:00");
+  });
+});
+
+describe('sanitizeCurrency', () => {
+  it('should turn a masked BRL value into a decimal string for the API', () => {
+    expect(sanitizeCurrency("1.234,56")).toBe("1234.56");
+  });
+
+  it('should handle values without thousands separator', () => {
+    expect(sanitizeCurrency("98,70")).toBe("98.70");
   });
 });

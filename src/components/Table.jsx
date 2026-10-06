@@ -103,6 +103,9 @@ function Table({ folha }) {
           </tfoot>
         </table>
       </section>
+      <p className="w-full xl:w-2/3 -mt-4 mb-8 text-center text-xs text-black">
+        Valores aproximados, calculados com as tabelas de INSS e IRRF de 2026 e sem dependentes. Não substitui o holerite.
+      </p>
     </>
   );
 }
